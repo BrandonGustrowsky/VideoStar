@@ -1,8 +1,11 @@
 import { Card, CardContent, CardActions, Button, CardMedia, Typography } from "@mui/material"
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import Tooltip from '@mui/material/Tooltip'
+import IconButton from '@mui/material/IconButton'
 const VideoCard = (props) => {
     const { name, duration, size, price, url, isPurchased, isFree } = props
     return (
-        <Card sx={{ maxWidth: "345px", background: "#F1DDBF", }}>
+        <Card sx={{ maxWidth: "345px", height: "300px", background: "#F1DDBF", boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}}>
             <CardMedia
                 component="video"
                 alt="Video"
@@ -10,30 +13,38 @@ const VideoCard = (props) => {
                 src="myMovie.mp4"
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Lizard
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
-                </Typography>
+                {/* Replace with video title */}
+                <Typography gutterBottom variant="h5" component="div" style={{fontSize: "18px", textAlign: "center", fontWeight: "500"}}>
+                    How to Solve a 3x3 Rubik's Cube
+                </Typography>                 
+                <div style={{display: "flex", gap: "155px"}}>
+                    {/* Replace with video duration*/}
+                    <Typography variant="body2" color="text.secondary">
+                        00:00:16.93
+                    </Typography>
+                    {/* Replace with video size */}
+                    <Typography variant="body2" color="text.secondary">
+                        7990219 MB
+                    </Typography>
+                </div>
+                <div style={{display: "flex", gap: "235px", marginTop: "8px"}}>
+                    {/* Replace with video price (if applicable) */}
+                    <Typography variant="body2" style={{marginTop: "10px", fontSize: "15px"}}>
+                            $6.79
+                    </Typography>
+                    <Tooltip title="Favorite" placement="top" arrow >
+                        <IconButton>
+                            <FavoriteBorderIcon style={{color: "#C400E4", fontSize: "35px"}}/>
+                        </IconButton>
+                    </Tooltip>
+                    
+                </div>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
-                <Button size="small">Learn More</Button>
+                {/* <Button size="small">Share</Button>
+                <Button size="small">Learn More</Button> */}
             </CardActions>
         </Card>
-        // <div>
-        //     <video width="320" height="240" controls  crossOrigin="anonymous">
-        //         <source src="mymovie.mp4" type="vide/mp4" alt="The video should display here."></source>
-        //     </video>
-        //     <div>
-        //         <h1>How to Solve a 3x3 Rubik's Cube</h1>
-        //         <p>00:00:16:93</p>
-        //         <p>7990219 MB</p>
-        //         <p>Like</p>
-        //     </div>
-        // </div>
     )
 }
 
