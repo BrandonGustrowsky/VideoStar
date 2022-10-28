@@ -3,9 +3,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
 const VideoCard = (props) => {
-    const { name, duration, size, price, url, isPurchased, isFree } = props
+    const { name, duration, size, price, url, isPurchased, isFree, btnColor } = props
     return (
-        <Card sx={{ maxWidth: "345px", height: "300px", background: "#F1DDBF", boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}}>
+        <Card sx={{ maxWidth: "345px", height: "300px", boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}}>
             <CardMedia
                 component="video"
                 alt="Video"
@@ -35,11 +35,10 @@ const VideoCard = (props) => {
                     {/* This should toggle between the favorite button and the add to cart button
                     depending if the video is free or not. */}
                     <Tooltip title="Favorite" placement="top" arrow >
-                        <IconButton>
-                            <FavoriteBorderIcon style={{color: "#C400E4", fontSize: "35px"}}/>
+                        <IconButton color="purple">
+                            <FavoriteBorderIcon style={{fontSize: "35px"}}/>
                         </IconButton>
                     </Tooltip>
-                    
                 </div>
             </CardContent>
         </Card>
