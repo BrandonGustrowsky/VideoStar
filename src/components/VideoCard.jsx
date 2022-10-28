@@ -32,6 +32,8 @@ const VideoCard = (props) => {
                     <Typography variant="body2" style={{marginTop: "10px", fontSize: "15px"}}>
                             $6.79
                     </Typography>
+                    {/* This should toggle between the favorite button and the add to cart button
+                    depending if the video is free or not. */}
                     <Tooltip title="Favorite" placement="top" arrow >
                         <IconButton>
                             <FavoriteBorderIcon style={{color: "#C400E4", fontSize: "35px"}}/>
@@ -40,10 +42,6 @@ const VideoCard = (props) => {
                     
                 </div>
             </CardContent>
-            <CardActions>
-                {/* <Button size="small">Share</Button>
-                <Button size="small">Learn More</Button> */}
-            </CardActions>
         </Card>
     )
 }
