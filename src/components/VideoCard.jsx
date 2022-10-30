@@ -8,8 +8,8 @@ const VideoCard = (props) => {
     const { name, duration, size, price, url, isPurchased, isFree, btnColor } = props
     const [isFavorite, setIsFavorite] = useState(false)
 
-    const handleClick = (event) => {
-        return (prevIsFavorite => !prevIsFavorite)
+    const handleFavoriteClick = () => {
+        return setIsFavorite((prevIsFavorite) => { return !prevIsFavorite })
         
     }
 
@@ -38,16 +38,17 @@ const VideoCard = (props) => {
                 </div>
                 <div style={{display: "flex", gap: "235px", marginTop: "8px"}}>
                     {/* Replace with video price (if applicable) */}
-                    <Typography variant="body2" style={{marginTop: "10px", fontSize: "15px"}}>
+                    <Typography variant="body2" style={{ marginTop: "10px", fontSize: "15px" }}>
                             $6.79
                     </Typography>
                     {/* This should toggle between the favorite button and the add to cart button
                     depending if the video is free or not. */}
-                    <Tooltip title="Favorite" placement="top" arrow >
-                        <IconButton color="purple" onClick={handleClick}>
-                            {isFavorite ? <FavoriteBorderIcon style={{fontSize: "35px"}}/> : <FavoriteIcon style={{fontSize: "35px"}} />}
+                    <Button color="purple" variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "", height: "30px", fontSize: "9px", padding: "1px" }}>Add to Cart</Button>
+                    {/* <Tooltip title="Favorite" placement="top" arrow >
+                        <IconButton color="purple" onClick={handleFavoriteClick}>
+                            {isFavorite ? <FavoriteIcon style={{ fontSize: "35px", textShadow: "3px 3px 2px black"}} /> : <FavoriteBorderIcon style={{ fontSize: "35px" }}/>}
                         </IconButton>
-                    </Tooltip>
+                    </Tooltip> */}
                 </div>
             </CardContent>
         </Card>
