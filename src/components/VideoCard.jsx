@@ -10,7 +10,6 @@ const VideoCard = (props) => {
 
     const handleFavoriteClick = () => {
         return setIsFavorite((prevIsFavorite) => { return !prevIsFavorite })
-        
     }
 
     return (
@@ -44,12 +43,12 @@ const VideoCard = (props) => {
                     {/* This should toggle between the favorite button and the add to cart button
                     depending if the video is free or not. */}
                     {/* <Button color="purple" variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "9px", padding: "1px" }}>Add to Cart</Button> */}
-                    <Button color="purple" variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "12px", padding: "1px" }}>Remove</Button>
-                    {/* <Tooltip title="Favorite" placement="top" arrow >
+                    {/* <Button color="purple" variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "12px", padding: "1px" }}>Remove</Button> */}
+                    <Tooltip title="Favorite" placement="top" arrow >
                         <IconButton color="purple" onClick={handleFavoriteClick}>
                             {isFavorite ? <FavoriteIcon style={{ fontSize: "35px", textShadow: "3px 3px 2px black"}} /> : <FavoriteBorderIcon style={{ fontSize: "35px" }}/>}
                         </IconButton>
-                    </Tooltip> */}
+                    </Tooltip>
                 </div>
             </CardContent>
         </Card>
