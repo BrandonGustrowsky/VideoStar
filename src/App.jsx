@@ -4,6 +4,7 @@ import './App.css'
 import VideoCard from './components/VideoCard'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ThemeContext } from 'styled-components'
+import Gallery from './components/Gallery'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -52,6 +53,7 @@ function App() {
       <div>
         <VideoCard backgroundColor={theme.cream} btnColor={theme.purple} />
       </div>
+      <Gallery />
     </ThemeProvider>
   )
 }
