@@ -50,9 +50,6 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <VideoCard backgroundColor={theme.cream} btnColor={theme.purple} />
-      </div>
       <Gallery />
     </ThemeProvider>
   )

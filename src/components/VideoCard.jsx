@@ -18,27 +18,27 @@ const VideoCard = (props) => {
                 component="video"
                 alt="Video"
                 width="100%"
-                src="myMovie.mp4"
+                src={ url }
             />
             <CardContent>
                 {/* Replace with video title */}
                 <Typography gutterBottom variant="h5" component="div" style={{fontSize: "18px", textAlign: "center", fontWeight: "500"}}>
-                    How to Solve a 3x3 Rubik's Cube
+                    { name }
                 </Typography>                 
                 <div style={{display: "flex", gap: "155px"}}>
                     {/* Replace with video duration*/}
                     <Typography variant="body2" color="text.secondary">
-                        00:00:16.93
+                        { duration }
                     </Typography>
                     {/* Replace with video size */}
                     <Typography variant="body2" color="text.secondary">
-                        7990219 MB
+                        { size + " MB"} 
                     </Typography>
                 </div>
                 <div style={{display: "flex", gap: "235px", marginTop: "8px"}}>
                     {/* Replace with video price (if applicable) */}
                     <Typography variant="body2" style={{ marginTop: "10px", fontSize: "15px" }}>
-                            $6.79
+                            { price }
                     </Typography>
                     {/* This should toggle between the favorite button and the add to cart button
                     depending if the video is free or not. */}

@@ -1,6 +1,7 @@
 import { sizeWidth } from "@mui/system"
 import { useState, useEffect } from "react"
 import VideoCard from './VideoCard'
+import Box from '@mui/material/Box'
 
 const Gallery = () => {
     const [data, setData] = useState(null)
@@ -22,11 +23,13 @@ const Gallery = () => {
     }, [])
 
     return (
-        <div>
+        <div id="gallery">
             { data ? (
                 // Array takes in data and prints an array of videocards.
-                [...new Array(data.length)].map((_,index) => {
-                    return <VideoCard 
+                [...new Array(data.length)].map((_,index) => {4
+                    console.log(index)
+                    return <Box key="index" sx={{ height: 350 }}>
+                        <VideoCard 
                         name={ data[index].name }
                         duration={ data[index].duration }
                         size={ data[index].size }
@@ -36,6 +39,7 @@ const Gallery = () => {
                         isFree={ data[index].isFree }
                         btnColor={ "yellow" } // IDK what this is yet.
                         />
+                        </Box>
                 })
             ) : (
                 // If data is not defined yet it is just a loading bar.
