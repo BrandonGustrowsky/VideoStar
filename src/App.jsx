@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ThemeContext } from 'styled-components'
 import Gallery from './components/Gallery'
+import cart from './components/cart'
 
 function App() {
   const [count, setCount] = useState(0)
