@@ -1,5 +1,6 @@
-import VideoCard from './components/VideoCard'
-import NavBar from './components/NavBar'
+import VideoCard from './VideoCard'
+import NavBar from './NavBar'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useState, useEffect } from "react";
 
 const cart = (props) => {
