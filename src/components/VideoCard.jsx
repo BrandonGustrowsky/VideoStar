@@ -5,7 +5,7 @@ import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 const VideoCard = (props) => {
-    const { name, duration, size, price, url, isPurchased, isFree, btnColor } = props
+    const { name, duration, size, price, url, isPurchased, isFree    } = props
     const [isFavorite, setIsFavorite] = useState(false)
 
     const handleFavoriteClick = () => {
@@ -32,13 +32,13 @@ const VideoCard = (props) => {
                     </Typography>
                     {/* Replace with video size */}
                     <Typography variant="body2" color="text.secondary">
-                        { size + " MB"} 
+                        { size + " MB" }
                     </Typography>
                 </div>
                 <div style={{display: "flex", gap: "235px", marginTop: "8px"}}>
                     {/* Replace with video price (if applicable) */}
-                    <Typography variant="body2" style={{ marginTop: "10px", fontSize: "15px" }}>
-                            { price }
+                    <Typography variant="body2" style={{ marginTop: "10px", fontSize: "15px", display: (isFree ? "none" : "initial")}}>
+                            ${ price }
                     </Typography>
                     {/* This should toggle between the favorite button and the add to cart button
                     depending if the video is free or not. */}
