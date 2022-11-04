@@ -13,31 +13,31 @@ const VideoCard = (props) => {
     }
 
     return (
-        <Card sx={{ maxWidth: "345px", height: "300px", boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}}>
+        <Card sx={{ width: "345px", height: "300px", boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}}>
             <CardMedia
                 component="video"
                 alt="Video"
                 width="100%"
                 src={ url }
             />
-            <CardContent>
+            <CardContent style={{ maxHeight: "80px"}}>
                 {/* Replace with video title */}
-                <Typography gutterBottom variant="h5" component="div" style={{fontSize: "18px", textAlign: "center", fontWeight: "500"}}>
+                <Typography gutterBottom variant="h5" component="div" style={{fontSize: "15px", textAlign: "center", fontWeight: "500", maxHeight: "100px", margin: "0px"}}>
                     { name }
-                </Typography>                 
-                <div style={{display: "flex", gap: "155px"}}>
+                </Typography>
+                <div style={{display: "flex", justifyContent: "space-between"}}>
                     {/* Replace with video duration*/}
                     <Typography variant="body2" color="text.secondary">
                         { duration }
                     </Typography>
                     {/* Replace with video size */}
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" style={{}}>
                         { size + " MB" }
                     </Typography>
                 </div>
-                <div style={{display: "flex", gap: "235px", marginTop: "8px"}}>
+                <div style={{display: "flex", justifyContent: "space-between", maxHeight: "100px"}}>
                     {/* Replace with video price (if applicable) */}
-                    <Typography variant="body2" style={{ marginTop: "10px", fontSize: "15px", display: (isFree ? "none" : "initial")}}>
+                    <Typography variant="body2" style={{ marginTop: "10px", fontSize: "15px", visibility: (isFree ? "hidden" : "shown")}}>
                             ${ price }
                     </Typography>
                     {/* This should toggle between the favorite button and the add to cart button
