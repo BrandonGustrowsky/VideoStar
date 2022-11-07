@@ -1,15 +1,22 @@
 import { useState } from 'react'
-import { Card, CardContent, CardActions, Button, CardMedia, Typography } from "@mui/material"
+import { Card, CardContent, Button, CardMedia, Typography } from "@mui/material"
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 const VideoCard = (props) => {
-    const { name, duration, size, price, url, isPurchased, isFree    } = props
+    let { name, duration, size, price, url, isPurchased, isFree } = props
     const [isFavorite, setIsFavorite] = useState(false)
+    const [hasPurchased, setHasPurchased] = useState(isPurchased)
 
     const handleFavoriteClick = () => {
         return setIsFavorite((prevIsFavorite) => { return !prevIsFavorite })
+    }
+
+    const handlePurchaseToggle = () => {
+        return setHasPurchased((prevHasPurchased) => { 
+            isPurchased = !prevHasPurchased
+            return !prevHasPurchased})
     }
 
     return (
@@ -40,13 +47,20 @@ const VideoCard = (props) => {
                     </Typography>
                     {/* This should toggle between the favorite button and the add to cart button
                     depending if the video is free or not. */}
-                    {/* <Button color="purple" variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "9px", padding: "1px" }}>Add to Cart</Button> */}
-                    {/* <Button color="purple" variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "12px", padding: "1px" }}>Remove</Button> */}
-                    <Tooltip title="Favorite" placement="top" arrow >
-                        <IconButton color="purple" onClick={handleFavoriteClick}>
-                            {isFavorite ? <FavoriteIcon style={{ fontSize: "35px", textShadow: "3px 3px 2px black"}} /> : <FavoriteBorderIcon style={{ fontSize: "35px" }}/>}
-                        </IconButton>
-                    </Tooltip>
+                    {isFree ? 
+                            <Tooltip title="Favorite" placement="top" arrow >
+                                <IconButton color="purple" onClick={handleFavoriteClick}>
+                                    {isFavorite ? <FavoriteIcon style={{ fontSize: "35px", textShadow: "3px 3px 2px black"}} /> : <FavoriteBorderIcon style={{ fontSize: "35px" }}/>}
+                                </IconButton>
+                            </Tooltip>
+                            : hasPurchased ? 
+                                <Button color="purple" onClick={handlePurchaseToggle} variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "12px", padding: "1px" }}>Remove</Button>
+                                :
+                                <Button color="purple" onClick={handlePurchaseToggle} variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "9px", padding: "1px" }}>Add to Cart</Button>
+                    }
+                    
+                    
+                    
                 </div>
             </CardContent>
         </Card>
