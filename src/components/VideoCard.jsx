@@ -21,12 +21,9 @@ const VideoCard = (props) => {
 
     return (
         <Card sx={{ width: "345px", height: "300px", boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}}>
-            <CardMedia
-                component="video"
-                alt="Video"
-                width="100%"
-                src={ url }
-            />
+            <video width="auto" height="195px" src={ url } crossOrigin="true" >
+                <source src={ url } type="video/mp4" alt="Here!" />
+            </video>
             <CardContent style={{ maxHeight: "80px"}}>
                 <div class="textContainer">
                 <Typography gutterBottom variant="h5" component="div" style={{fontSize: "15px", textAlign: "center", fontWeight: "500", maxHeight: "100px", margin: "0px"}}>
