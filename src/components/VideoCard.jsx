@@ -21,22 +21,20 @@ const VideoCard = (props) => {
                 src={ url }
             />
             <CardContent style={{ maxHeight: "80px"}}>
-                {/* Replace with video title */}
+                <div class="textContainer">
                 <Typography gutterBottom variant="h5" component="div" style={{fontSize: "15px", textAlign: "center", fontWeight: "500", maxHeight: "100px", margin: "0px"}}>
                     { name }
                 </Typography>
+                </div>
                 <div style={{display: "flex", justifyContent: "space-between"}}>
-                    {/* Replace with video duration*/}
                     <Typography variant="body2" color="text.secondary">
                         { duration }
                     </Typography>
-                    {/* Replace with video size */}
                     <Typography variant="body2" color="text.secondary" style={{}}>
                         { size + " MB" }
                     </Typography>
                 </div>
                 <div style={{display: "flex", justifyContent: "space-between", maxHeight: "100px"}}>
-                    {/* Replace with video price (if applicable) */}
                     <Typography variant="body2" style={{ marginTop: "10px", fontSize: "15px", visibility: (isFree ? "hidden" : "shown")}}>
                             ${ price }
                     </Typography>
