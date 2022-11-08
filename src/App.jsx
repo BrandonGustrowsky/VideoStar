@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import AppContet from './components/AppContent'
+import AppContent from './components/AppContent'
 import Navbar from './components/Navbar'
+import Theatre from './components/Theatre'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ThemeContext } from 'styled-components'
 
@@ -49,8 +50,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
-      <AppContet />
+      <AppContent />
     </ThemeProvider>
   )
 }
