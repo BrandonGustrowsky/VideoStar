@@ -20,3 +20,11 @@ html, body {
     margin-bottom: 5px;
     height: 30px;
 }
+
+#recommended {
+    padding: 40px 0;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-around;
+}

@@ -25,7 +25,7 @@ const VideoCard = (props) => {
                 <source src={ url } type="video/mp4" alt="Here!" />
             </video>
             <CardContent style={{ maxHeight: "80px"}}>
-                <div class="textContainer">
+                <div className="textContainer">
                 <Typography gutterBottom variant="h5" component="div" style={{fontSize: "15px", textAlign: "center", fontWeight: "500", maxHeight: "100px", margin: "0px"}}>
                     { name }
                 </Typography>

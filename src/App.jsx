@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import VideoCard from './components/VideoCard'
 import Navbar from './components/Navbar'
+import Theatre from './components/Theatre'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ThemeContext } from 'styled-components'
 import Gallery from './components/Gallery'
@@ -53,7 +54,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
-      <Gallery />
+      <Theatre />
+      {/* <Gallery /> */}
     </ThemeProvider>
   )
 }
