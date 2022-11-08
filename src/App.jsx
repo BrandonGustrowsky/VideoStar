@@ -1,13 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
-import VideoCard from './components/VideoCard'
+import AppContet from './components/AppContent'
 import Navbar from './components/Navbar'
-import Theatre from './components/Theatre'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ThemeContext } from 'styled-components'
-import Gallery from './components/Gallery'
-import cart from './components/cart'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -54,8 +50,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
-      <Theatre />
-      {/* <Gallery /> */}
+      <AppContet />
     </ThemeProvider>
   )
 }

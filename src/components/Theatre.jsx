@@ -52,9 +52,9 @@ const Theatre = (props) => {
                 <source src={ url } type="video/mp4" alt="Video" />
             </video>
             <section style={{display: "flex", justifyContent: "space-between", margin: "0 55px", flexWrap: "wrap"}}>
-                <Typography variant="h1" color="secondary" style={{fontWeight: 350, fontSize: "70px", fontStyle: "italic"}}>How to Solve a 3x3 Rubik's Cube</Typography>
-                <Typography variant="h2" color="secondary" style={{fontSize: "40px", lineHeight: "85px"}}>00:00:16.93</Typography>
-                <Typography variant="h3" color="secondary" style={{fontSize: "35px", fontWeight: "300"}}>7990219 MB</Typography>
+                <Typography variant="h1" color="secondary" style={{fontWeight: 350, fontSize: "70px", fontStyle: "italic"}}> { name } </Typography>
+                <Typography variant="h2" color="secondary" style={{fontSize: "40px", lineHeight: "85px"}}> { duration } </Typography>
+                <Typography variant="h3" color="secondary" style={{fontSize: "35px", fontWeight: "300"}}> { size } </Typography>
             </section>
             <section id="recommended">
                 {/* {console.log(data)} */}
