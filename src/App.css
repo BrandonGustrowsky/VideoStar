@@ -30,3 +30,15 @@ html, body {
     gap: 15px;
     flex-wrap: wrap;
 }
+
+.videoCardVideo:hover {
+    cursor: pointer;
+}
+
+.videoCard {
+    transition: 1s ease-in-out;
+}
+
+.videoCard:hover {
+    box-shadow: rgba(196, 0, 228, 0.4) 0px 0px 5px 5px, rgba(196, 0, 228, 0.3) 0px 0px 10px 10px, rgba(196, 0, 228, 0.2) 0px 0px 15px 15px, rgba(196, 0, 228, 0.1) 0 0 20px 20px, rgba(196, 0, 228, 0.05) 0 0 45px 45px;
+}
