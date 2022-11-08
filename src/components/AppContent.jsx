@@ -19,21 +19,23 @@ const AppContent = () => {
 
     const [showCart, setShowCart] = useState(false)
     const [showGallery, setShowGallery] = useState(true)
-    const [showVideo, setShowVideo] = useState(videoStateDefaultObj)
+    const [showTheatre, setShowTheatre] = useState(videoStateDefaultObj)
 
 const handleShowCart = (showingCart) => {
     setShowCart(showingCart)
     setShowGallery(false)
-    setShowVideo({})
+    setShowTheatre(videoStateDefaultObj)
 }
 
 const handleShowGallery = (showingGallery) => {
     setShowGallery(showingGallery)
     setShowCart(false)
+    setShowTheatre(videoStateDefaultObj)
 }
 
-const handleShowVideo = ({id, name, duration, size, isPurchased, isFree, url}) => {
-    setShowVideo({
+const handleShowVideo = (id, name, duration, size, isPurchased, isFree, url) => {
+    // console.log("Calling the function from AppContent")
+    setShowTheatre({
         id: id,
         name: name,
         duration: duration,
@@ -55,7 +57,19 @@ const handleShowVideo = ({id, name, duration, size, isPurchased, isFree, url}) =
                 <Cart />
             }
             {showGallery &&
-                <Gallery clickedVideo={() => handleShowVideo()}/>
+                <Gallery clickedVideo={handleShowVideo}/>
+            }
+            {console.log(showTheatre.url)}
+            {(showTheatre.id != null) &&
+                <Theatre id={showTheatre.id}
+                        name={showTheatre.name}
+                        duration={showTheatre.duration}
+                        size={showTheatre.size}
+                        isPurchased={showTheatre.isPurchased}
+                        isFree={showTheatre.isFree}
+                        url={showTheatre.url}
+                        
+                />
             }
         </div>
         

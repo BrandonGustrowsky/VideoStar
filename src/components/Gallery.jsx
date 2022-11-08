@@ -7,7 +7,8 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
-const Gallery = () => {
+const Gallery = (props) => {
+    const { clickedVideo } = props
     const [data, setData] = useState(null)
     const [sort, setSort] = useState('')
     const [filter, setFilter] = useState('')
@@ -78,6 +79,7 @@ const Gallery = () => {
                     [...new Array(data.length)].map((_, index) => {
                         return <Box key={index} sx={{ height: 350 }}>
                             <VideoCard
+                                id={data[index].id}
                                 name={data[index].name}
                                 duration={data[index].duration}
                                 size={data[index].size}
@@ -85,6 +87,7 @@ const Gallery = () => {
                                 url={data[index].url}
                                 isPurchased={data[index].isPurchased}
                                 isFree={data[index].isFree}
+                                clickedVideo={() => {clickedVideo(data[index].id, data[index].name, data[index].duration, data[index].size, data[index].isPurchased, data[index].isFree, data[index].url)}}
                             />
                         </Box>
                     })

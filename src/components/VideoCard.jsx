@@ -5,7 +5,8 @@ import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 const VideoCard = (props) => {
-    let { name, duration, size, price, url, isPurchased, isFree } = props
+
+    let { id, name, duration, size, price, url, isPurchased, isFree, clickedVideo } = props
     const [isFavorite, setIsFavorite] = useState(false)
     const [hasPurchased, setHasPurchased] = useState(isPurchased)
 
@@ -21,7 +22,7 @@ const VideoCard = (props) => {
 
     return (
         <Card sx={{ width: "345px", height: "300px", boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px"}}>
-            <video width="auto" height="195px" src={ url } crossOrigin="true" >
+            <video width="auto" height="195px" src={ url } crossOrigin="true" onClick={clickedVideo} >
                 <source src={ url } type="video/mp4" alt="Here!" />
             </video>
             <CardContent style={{ maxHeight: "80px"}}>
@@ -34,7 +35,7 @@ const VideoCard = (props) => {
                     <Typography variant="body2" color="text.secondary">
                         { duration }
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" style={{}}>
+                    <Typography variant="body2" color="text.secondary">
                         { size + " MB" }
                     </Typography>
                 </div>
