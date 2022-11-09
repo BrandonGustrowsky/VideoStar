@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react'
 
 const AppContent = () => {
 
+    //The default object for showTheatre state    
     const videoStateDefaultObj = {
         id: null,
         name: "",
@@ -24,121 +25,81 @@ const AppContent = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [data, setData] = useState(null)
 
-const handleShowCart = (showingCart) => {
-    setShowCart(showingCart)
-    setShowGallery(false)
-    setShowTheatre(videoStateDefaultObj)
-    setIsLoaded(false)
-}
-
-const handleShowGallery = (showingGallery) => {
-    setShowGallery(showingGallery)
-    setShowCart(false)
-    setShowTheatre(videoStateDefaultObj)
-}
-
-const handleShowVideo = (id, name, duration, size, isPurchased, isFree, url) => {
-    // console.log("Calling the function from AppContent")
-    setShowTheatre({
-        id: id,
-        name: name,
-        duration: duration,
-        size: size,
-        isPurchased: isPurchased,
-        isFree: isFree,
-        url: url
-    })
-    setShowGallery(false)
-    setShowCart(false)
-    setIsLoaded(true)
-}
-
-// UseEffect is called when the site starts and fetches the json data.
-useEffect(() => {
-    setTimeout(() => {
-        (async () => {
-            try {
-                const data = await fetch("https://videostar.dacoder.io/")
-                const jsonData = await data.json()
-                setData(jsonData)
-                setIsLoaded(true)
-                console.log(data)
-            } catch (error) {
-                console.log(error)
-            }
-        })()
-    }, 2000)
-}, [])
-
-const videoCards = []
-const paidVideoObjs = []
-let paidVideos = []
-
-if (data) {
-    for (const videoObj of data) {
-        videoCards.push(
-            <VideoCard
-                id={videoObj.id}
-                name={videoObj.name}
-                duration={videoObj.duration}
-                size={videoObj.size}
-                price={videoObj.price}
-                url={videoObj.url}
-                isPurchased={videoObj.isPurchased}
-                isFree={videoObj.isFree}
-                isLoaded={isLoaded}
-                clickedVideo={() => {handleShowVideo(videoObj.id, videoObj.name, videoObj.duration, videoObj.size, videoObj.isPurchased, videoObj.isFree, videoObj.url)}}
-             />
-        )
+    //Shows the cart and hides all other main components
+    const handleShowCart = (showingCart) => {
+        setShowCart(showingCart)
+        setShowGallery(false)
+        setShowTheatre(videoStateDefaultObj)
+        setIsLoaded(true)
     }
-    
-} else {
-    for (let i=0; i<25; i++) {
-        videoCards.push(
-            <VideoCard
-                name={""}
-                duration={""}
-                size={""}
-                price={""}
-                url={""}
-                isPurchased={""}
-                isFree={""}
-                isLoaded={isLoaded}
-            />
-        )
+    //Shows the gallery and hides all other main components
+    const handleShowGallery = (showingGallery) => {
+        setShowGallery(showingGallery)
+        setShowCart(false)
+        setShowTheatre(videoStateDefaultObj)
     }
-}
-if (data) {
-    for (const videoObj of data) {
-        if (!videoObj.isFree && !videoObj.isPurchased) {
-            paidVideoObjs.push(videoObj)
+    //Shows the Theatre mode for a video and hides all other main components
+    const handleShowVideo = (id, name, duration, size, isPurchased, isFree, url) => {
+        setShowTheatre({
+            id: id,
+            name: name,
+            duration: duration,
+            size: size,
+            isPurchased: isPurchased,
+            isFree: isFree,
+            url: url
+        })
+        setShowGallery(false)
+        setShowCart(false)
+        setIsLoaded(true)
+    }
+
+    // UseEffect is called when the site starts and fetches the json data.
+    useEffect(() => {
+        setTimeout(() => {
+            (async () => {
+                try {
+                    const data = await fetch("https://videostar.dacoder.io/")
+                    const jsonData = await data.json()
+                    setData(jsonData)
+                    setIsLoaded(true)
+                    console.log(data)
+                } catch (error) {
+                    console.log(error)
+                }
+            })()
+        }, 2000)
+    }, [])
+
+    const videoCards = [] //Stores all VideoCard components that are to be rendered in the Gallery (check
+                            // Gallery props)
+    const paidVideoObjs = [] //Stores the Videos that are not free and have not been purchased
+    let paidVideos = [] //Stores the VideoCard components that are to be rendered in the Theatre component
+                        //as recommended videos (check Theatre props)
+
+    if (data) {
+        for (const videoObj of data) {
+            videoCards.push(
+                <VideoCard
+                    id={videoObj.id}
+                    name={videoObj.name}
+                    duration={videoObj.duration}
+                    size={videoObj.size}
+                    price={videoObj.price}
+                    url={videoObj.url}
+                    isPurchased={videoObj.isPurchased}
+                    isFree={videoObj.isFree}
+                    isLoaded={isLoaded}
+                    clickedVideo={() => {handleShowVideo(videoObj.id, videoObj.name, videoObj.duration, videoObj.size, videoObj.isPurchased, videoObj.isFree, videoObj.url)}}
+                />
+            )
         }
-    }
-    // Choosing three recommended videos at random
-    paidVideoObjs.sort(() => Math.random() - 0.5)
-    let selectedVideos = paidVideoObjs.slice(0, 3)
-    console.log(selectedVideos)
-    paidVideos = selectedVideos.map((video, index) => {
-        return (
-        <VideoCard
-            key={index}
-            id={video.id}
-            name={video.name}
-            duration={video.duration}
-            size={video.size}
-            price={video.price}
-            url={video.url}
-            isPurchased={video.isPurchased}
-            isFree={video.isFree}
-            isLoaded={isLoaded}
-            clickedVideo={() => {handleShowVideo(video.id, video.name, video.duration, video.size, video.isPurchased, video.isFree, video.url)}}
-        />
-        )
-    })
-} else {
-    for (let i=0; i<3; i++) {
-        paidVideos.push(
-            <VideoCard
+        
+    } else {
+        //Create empty VideoCards
+        for (let i=0; i<25; i++) {
+            videoCards.push(
+                <VideoCard
                     name={""}
                     duration={""}
                     size={""}
@@ -147,38 +108,82 @@ if (data) {
                     isPurchased={""}
                     isFree={""}
                     isLoaded={isLoaded}
-            />
-        )
-    }
-    
-}
-    return (
-        <div>
-            <Navbar showingCart={() => handleShowCart(true)}
-                    showingGallery={() => handleShowGallery(true)}
-            />
-            {showCart &&
-                <Cart />
-            }
-            {showGallery &&
-                <Gallery
-                    videos={videoCards}
-                    />
-            }
-            {console.log(showTheatre.url)}
-            {(showTheatre.id != null) &&
-                <Theatre id={showTheatre.id}
-                        name={showTheatre.name}
-                        duration={showTheatre.duration}
-                        size={showTheatre.size}
-                        isPurchased={showTheatre.isPurchased}
-                        isFree={showTheatre.isFree}
-                        url={showTheatre.url}
-                        recommendedVideos={paidVideos}
                 />
+            )
+        }
+    }
+    if (data) {
+        for (const videoObj of data) {
+            if (!videoObj.isFree && !videoObj.isPurchased) {
+                paidVideoObjs.push(videoObj)
             }
-        </div>
-    )
+        }
+        // Choosing three recommended videos at random
+        paidVideoObjs.sort(() => Math.random() - 0.5)
+        let selectedVideos = paidVideoObjs.slice(0, 3) //Choose the first three paid videos in
+                                                       //the randomly sorted array
+        paidVideos = selectedVideos.map((video, index) => {
+            return (
+            <VideoCard
+                key={index}
+                id={video.id}
+                name={video.name}
+                duration={video.duration}
+                size={video.size}
+                price={video.price}
+                url={video.url}
+                isPurchased={video.isPurchased}
+                isFree={video.isFree}
+                isLoaded={isLoaded}
+                clickedVideo={() => {handleShowVideo(video.id, video.name, video.duration, video.size, video.isPurchased, video.isFree, video.url)}}
+            />
+            )
+        })
+    } else {
+        //Create empty VideoCards
+        for (let i=0; i<3; i++) {
+            paidVideos.push(
+                <VideoCard
+                        name={""}
+                        duration={""}
+                        size={""}
+                        price={""}
+                        url={""}
+                        isPurchased={""}
+                        isFree={""}
+                        isLoaded={isLoaded}
+                />
+            )
+        }
+        
+    }
+        return (
+            <div>
+                <Navbar showingCart={() => handleShowCart(true)}
+                        showingGallery={() => handleShowGallery(true)}
+                />
+                {showCart &&
+                    <Cart />
+                }
+                {showGallery &&
+                    <Gallery
+                        videos={videoCards}
+                        />
+                }
+                {console.log(showTheatre.url)}
+                {(showTheatre.id != null) &&
+                    <Theatre id={showTheatre.id}
+                            name={showTheatre.name}
+                            duration={showTheatre.duration}
+                            size={showTheatre.size}
+                            isPurchased={showTheatre.isPurchased}
+                            isFree={showTheatre.isFree}
+                            url={showTheatre.url}
+                            recommendedVideos={paidVideos}
+                    />
+                }
+            </div>
+        )
 }
 
 export default AppContent

@@ -13,23 +13,6 @@ const Gallery = (props) => {
     const [sort, setSort] = useState('')
     const [filter, setFilter] = useState('')
 
-
-    // // UseEffect is called when the site starts and fetches the json data.
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         (async () => {
-    //             try {
-    //                 const data = await fetch("https://videostar.dacoder.io/")
-    //                 const jsonData = await data.json()
-    //                 setData(jsonData)
-    //                 console.log(data)
-    //             } catch (error) {
-    //                 console.log(error)
-    //             }
-    //         })()
-    //     }, 2000)
-    // }, [])
-
     const handleSortChange = (event) => {
         setSort(event.target.value)
     }
@@ -74,40 +57,7 @@ const Gallery = (props) => {
                 </Box>
             </div>
             <div id="gallery">
-                
                     {videos}
-                    {/* // Array takes in data and prints an array of videocards. */}
-                    {/* // [...new Array(data.length)].map((_, index) => { */}
-                    {/* //     return <Box key={index} sx={{ height: 350 }}>
-                    //         <VideoCard
-                    //             id={data[index].id}
-                    //             name={data[index].name}
-                    //             duration={data[index].duration}
-                    //             size={data[index].size}
-                    //             price={data[index].price}
-                    //             url={data[index].url}
-                    //             isPurchased={data[index].isPurchased}
-                    //             isFree={data[index].isFree}
-                    //             clickedVideo={() => {clickedVideo(data[index].id, data[index].name, data[index].duration, data[index].size, data[index].isPurchased, data[index].isFree, data[index].url)}}
-                    //         />
-                    //     </Box>
-                //     }) */}
-                {/* // ) : (
-                //     // If data is not defined yet it is just a loading bar.
-                //     [...new Array(25)].map((_, index) => { */}
-                {/* //         return <Box key={index + 28} sx={{ height: 350 }}>
-                //             <VideoCard */}
-                {/* //                 name={""}
-                //                 duration={""}
-                //                 size={""}
-                //                 price={""}
-                //                 url={""}
-                //                 isPurchased={""}
-                //                 isFree={""}
-                //             />
-                //         </Box>
-                //     })
-                // )} */}
             </div>
         </div>
     )

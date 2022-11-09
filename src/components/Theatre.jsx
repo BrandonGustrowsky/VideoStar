@@ -7,34 +7,6 @@ import Box from '@mui/material/Box'
 
 const Theatre = (props) => {
     const { name, duration, size, price, url, isPurchased, isFree, recommendedVideos } = props
-    const [data, setData] = useState(null)
-
-    console.log("Recommended videos -->")
-    console.log(recommendedVideos)
-
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         (async () => {
-    //             try {
-    //                 const myData = await fetch("https://videostar.dacoder.io/")
-    //                 const jsonData = await myData.json()
-    //                 const costVideos = []
-    //                 for (let video of jsonData) {
-    //                     if (!video.isFree) {
-    //                         // console.log(video)
-    //                         costVideos.push(video)
-    //                     }
-    //                 }
-    //                 costVideos.sort(() => Math.random() - 0.5)
-    //                 let selectedVideos = costVideos.slice(0, 3)
-    //                 setData(selectedVideos)
-    //             } catch (error) {
-    //                 console.log(error)
-    //             }
-    //         })()
-    //     }, 2000)
-    // }, [])
 
     return (
         <main style={{background: "#525E75"}}>
@@ -49,42 +21,7 @@ const Theatre = (props) => {
                 <Typography variant="h3" color="secondary" style={{fontSize: "35px", fontWeight: "300"}}> { size + " MB"} </Typography>
             </section>
             <section id="recommended">
-
                 { recommendedVideos }
-                {/* {console.log(data)}
-                { data ? (
-                    [...new Array(data.length)].map((_, index) => {
-                        return (
-                            <VideoCard 
-                                key={data[index].id}
-                                id={data[index].id}
-                                name={data[index].name}
-                                duration={data[index].duration}
-                                size={data[index].size}
-                                price={data[index].price}
-                                url={data[index].url}
-                                isPurchased={data[index].isPurchased}
-                                isFree={data[index].isFree}
-                            />
-                        )
-                    })
-                ) : (
-                    [...new Array(3)].map((_, index) => {
-                        return <Box key={index + 28} sx={{ height: 350 }}>
-                            <VideoCard
-                                key={index}
-                                id={null}
-                                name={""}
-                                duration={""}
-                                size={""}
-                                price={""}
-                                url={""}
-                                isPurchased={""}
-                                isFree={""}
-                            />
-                        </Box>
-                    })
-                )} */}
             </section>
         </main>
     )
