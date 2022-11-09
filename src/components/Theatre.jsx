@@ -6,45 +6,35 @@ import { Typography } from "@mui/material"
 import Box from '@mui/material/Box'
 
 const Theatre = (props) => {
-    const { name, duration, size, price, url, isPurchased, isFree } = props
+    const { name, duration, size, price, url, isPurchased, isFree, recommendedVideos } = props
     const [data, setData] = useState(null)
 
+    console.log("Recommended videos -->")
+    console.log(recommendedVideos)
 
 
-    useEffect(() => {
-        setTimeout(() => {
-            (async () => {
-                try {
-                    const myData = await fetch("https://videostar.dacoder.io/")
-                    const jsonData = await myData.json()
-                    const costVideos = []
-                    for (let video of jsonData) {
-                        if (!video.isFree) {
-                            // console.log(video)
-                            costVideos.push(video)
-                        }
-                    }
-                    costVideos.sort(() => Math.random() - 0.5)
-                    let selectedVideos = costVideos.slice(0, 3)
-                    setData(selectedVideos)
-                } catch (error) {
-                    console.log(error)
-                }
-            })()
-        }, 2000)
-    }, [])
-
-    // console.log(data.length)
-
-    // const costVideos = []
-    // console.log(data)
-    // for (let video of data) {
-    //     if (!video.isFree) {
-    //         console.log(video.isFree)
-    //         costVideos.push(video)
-    //     }
-    // }
-    // let selectedVideos = costVideos.slice(0, 3)
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         (async () => {
+    //             try {
+    //                 const myData = await fetch("https://videostar.dacoder.io/")
+    //                 const jsonData = await myData.json()
+    //                 const costVideos = []
+    //                 for (let video of jsonData) {
+    //                     if (!video.isFree) {
+    //                         // console.log(video)
+    //                         costVideos.push(video)
+    //                     }
+    //                 }
+    //                 costVideos.sort(() => Math.random() - 0.5)
+    //                 let selectedVideos = costVideos.slice(0, 3)
+    //                 setData(selectedVideos)
+    //             } catch (error) {
+    //                 console.log(error)
+    //             }
+    //         })()
+    //     }, 2000)
+    // }, [])
 
     return (
         <main style={{background: "#525E75"}}>
@@ -59,7 +49,9 @@ const Theatre = (props) => {
                 <Typography variant="h3" color="secondary" style={{fontSize: "35px", fontWeight: "300"}}> { size + " MB"} </Typography>
             </section>
             <section id="recommended">
-                {/* {console.log(data)} */}
+
+                { recommendedVideos }
+                {/* {console.log(data)}
                 { data ? (
                     [...new Array(data.length)].map((_, index) => {
                         return (
@@ -92,7 +84,7 @@ const Theatre = (props) => {
                             />
                         </Box>
                     })
-                )}
+                )} */}
             </section>
         </main>
     )
