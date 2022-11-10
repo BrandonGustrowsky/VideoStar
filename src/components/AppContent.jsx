@@ -23,7 +23,29 @@ const AppContent = () => {
     const [showGallery, setShowGallery] = useState(true)
     const [showTheatre, setShowTheatre] = useState(videoStateDefaultObj)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [favorited, setFavorited] = useState(false)
     const [data, setData] = useState(null)
+    // const [isFavorite, setIsFavorite] = useState(false)
+    // const [isInCart, setIsInCart] = useState(false)
+    // const [object, setObject] = useState({
+    //     name: name,
+    //     duration: duration,
+    //     size: size,
+    //     price: price,
+    //     url: url,
+    //     isFree: isFree,
+    //     isPurchased: isPurchased,
+    //     clickedVideo: clickedVideo,
+    //     isLoaded: isLoaded
+    // })
+    const handleFavoriteClick = () => {
+        // return setIsFavorite((prevIsFavorite) => { return !prevIsFavorite })
+        return setFavorited((prevFavorited) => {
+            return !prevFavorited
+        })
+    }
+
+    console.log(favorited)
 
     //Shows the cart and hides all other main components
     const handleShowCart = (showingCart) => {
@@ -61,7 +83,13 @@ const AppContent = () => {
                 try {
                     const data = await fetch("https://videostar.dacoder.io/")
                     const jsonData = await data.json()
-                    setData(jsonData)
+                    setData(jsonData.map(video => {
+                        return {
+                            ...video,
+                            isFavorite: false,
+                            isInCart: false,
+                        }
+                    }))
                     setIsLoaded(true)
                     console.log(data)
                 } catch (error) {
@@ -72,82 +100,92 @@ const AppContent = () => {
     }, [])
     const paidVideoObjs = [] //Stores the Videos that are not free and have not been purchased
     let paidVideos = [] //Stores the VideoCard components that are to be rendered in the Theatre component
-                        //as recommended videos (check Theatre props)
+    //as recommended videos (check Theatre props)
 
     if (data) {
-        for (const videoObj of data) {
-            if (!videoObj.isFree && !videoObj.isPurchased) {
-                paidVideoObjs.push(videoObj)
-            }
-        }
-        // Choosing three recommended videos at random
-        paidVideoObjs.sort(() => Math.random() - 0.5)
-        let selectedVideos = paidVideoObjs.slice(0, 3) //Choose the first three paid videos in
-                                                       //the randomly sorted array
-        paidVideos = selectedVideos.map((video, index) => {
+        //the randomly sorted array
+        return data.filter(video => !video.isFree && !video.isPurchased).sort(() => Math.random() - 0.5).slice(-3).map((video, index) => {
             return (
-            <VideoCard
-                key={index}
-                id={video.id}
-                name={video.name}
-                duration={video.duration}
-                size={video.size}
-                price={video.price}
-                url={video.url}
-                isPurchased={video.isPurchased}
-                isFree={video.isFree}
-                isLoaded={isLoaded}
-                clickedVideo={() => {handleShowVideo(video.id, video.name, video.duration, video.size, video.isPurchased, video.isFree, video.url)}}
-            />
+                <VideoCard
+                    key={index}
+                    id={video.id}
+                    name={video.name}
+                    duration={video.duration}
+                    size={video.size}
+                    price={video.price}
+                    url={video.url}
+                    isPurchased={video.isPurchased}
+                    isFree={video.isFree}
+                    isFavorite={video.isFavorite}
+                    favoriteFtn={() => {
+                        setData(v => {
+                            return {
+                                ...v,
+                                isFavorite: v.id === video.id ? !v.isFavorite : v.isFavorite
+                            }
+                        })
+                    }}
+                    isInCart={video.isInCart}
+                    isLoaded={isLoaded}
+                    clickedVideo={() => { handleShowVideo(video.id, video.name, video.duration, video.size, video.isPurchased, video.isFree, video.url) }}
+                />
             )
         })
     } else {
         //Create empty VideoCards
-        for (let i=0; i<3; i++) {
+        for (let i = 0; i < 3; i++) {
             paidVideos.push(
                 <VideoCard
-                        name={""}
-                        duration={""}
-                        size={""}
-                        price={""}
-                        url={""}
-                        isPurchased={""}
-                        isFree={""}
-                        isLoaded={isLoaded}
+                    name={""}
+                    duration={""}
+                    size={""}
+                    price={""}
+                    url={""}
+                    isPurchased={""}
+                    isFree={""}
+                    isLoaded={isLoaded}
+                    favoriteFtn={() => {
+                        setData(v => {
+                            return {
+                                ...v,
+                                isFavorite: v.id === video.id ? !v.isFavorite : v.isFavorite
+                            }
+                        })
+                    }}
                 />
             )
         }
-        
+
     }
-        return (
-            <div>
-                <Navbar showingCart={() => handleShowCart(true)}
-                        showingGallery={() => handleShowGallery(true)}
+    return (
+        <div>
+            <Navbar showingCart={() => handleShowCart(true)}
+                showingGallery={() => handleShowGallery(true)}
+            />
+            {showCart &&
+                <Cart />
+            }
+            {showGallery &&
+                <Gallery
+                    data={data}
+                    isLoaded={isLoaded}
+                    handleShowVideo={handleShowVideo}
                 />
-                {showCart &&
-                    <Cart />
-                }
-                {showGallery &&
-                    <Gallery
-                        data={data}
-                        isLoaded={isLoaded}
-                        handleShowVideo={handleShowVideo}
-                        />
-                }
-                {console.log(showTheatre.url)}
-                {(showTheatre.id != null) &&
-                    <Theatre id={showTheatre.id}
-                            name={showTheatre.name}
-                            duration={showTheatre.duration}
-                            size={showTheatre.size}
-                            isPurchased={showTheatre.isPurchased}
-                            isFree={showTheatre.isFree}
-                            url={showTheatre.url}
-                            recommendedVideos={paidVideos}
-                    />
-                }
-            </div>
-        )
+            }
+            {console.log(showTheatre.url)}
+            {(showTheatre.id != null) &&
+                <Theatre id={showTheatre.id}
+                    name={showTheatre.name}
+                    duration={showTheatre.duration}
+                    size={showTheatre.size}
+                    isPurchased={showTheatre.isPurchased}
+                    isFree={showTheatre.isFree}
+                    url={showTheatre.url}
+                    recommendedVideos={paidVideos}
+                />
+            }
+        </div>
+    )
 }
 
 export default AppContent
