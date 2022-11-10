@@ -6,11 +6,17 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+import OutlinedInput from '@mui/material/OutlinedInput'
 
 const Gallery = (props) => {
     const { data, isLoaded, handleShowVideo } = props
     const [sort, setSort] = useState('titleSort')
     const [filter, setFilter] = useState('')
+    const [search, setSearch] = useState('')
+
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
+    }
     let dataSorted
 
     const handleSortChange = (event) => {
@@ -19,6 +25,11 @@ const Gallery = (props) => {
     const handleFilterChange = (event) => {
         setFilter(event.target.value)
     }
+
+    /* useEffect(() => {
+        debouncedFetch()
+    }, [search]) */
+
     if (data) {
         if (sort == 'lengthSort') {
             dataSorted = data.sort((a, b) => {
@@ -31,31 +42,65 @@ const Gallery = (props) => {
                 let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
                 let msB = (splitB[2][1] * 10) + (splitB[2][0] * 1000) + (splitB[1] * 60000) + (splitB[0] * 3600000)
 
-                return (msA > msB) ? 1 : -1;
+                return (msA > msB) ? 1 : -1
             })
-        }
-        if (sort == 'titleSort') {
+        } else if (sort == 'titleSort') {
             console.log(data)
             dataSorted = data.sort((a, b) => {
-                return (a.name > b.name) ? 1 : -1;
+                return (a.name > b.name) ? 1 : -1
             })
-        }
-        if (sort == 'titleSort') {
+        } else if (sort == 'titleSort') {
             dataSorted = data.sort((a, b) => {
-                return (a.name > b.name) ? 1 : -1;
+                return (a.name > b.name) ? 1 : -1
             })
-        }
-        if (sort == 'freeSort') {
+        } else if (sort == 'freeSort') {
             console.log(data)
             dataSorted = data.sort((a, b) => {
-                return (a.price < b.price) ? 1 : -1;
+                return (a.price < b.price) ? 1 : -1
             })
-        }
-        if (sort == 'paidSort') {
+        } else if (sort == 'paidSort') {
             dataSorted = data.sort((a, b) => {
-                return (a.price > b.price) ? 1 : -1;
+                return (a.price > b.price) ? 1 : -1
             })
         }
+
+        console.log(filter)
+        if (filter == 'paidFilter') {
+            dataSorted = dataSorted.filter((a) => {
+                return !a.isFree
+            })
+        } else if (filter == 'freeFilter') {
+            dataSorted = dataSorted.filter((a) => {
+                return a.isFree
+            })
+        } else if (filter == 'favoritesFilter') {
+            dataSorted = dataSorted.filter((a) => {
+                return a.isFavorite
+            })
+        } else if (filter == 'shortFilter') {
+            dataSorted = dataSorted.filter((a) => {
+                let splitA = a.duration.split(":")
+                splitA[2] = splitA[2].split(".")
+
+                let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
+                return msA < 15000
+            })
+        } else if (filter == 'longFilter') {
+            dataSorted = dataSorted.filter((a) => {
+                let splitA = a.duration.split(":")
+                splitA[2] = splitA[2].split(".")
+
+                let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
+                return msA >= 15000
+            })
+        }
+
+        if (search != '') {
+            dataSorted = dataSorted.filter((a) => {
+                return a.name.toLowerCase().includes(search)
+            })
+        }
+
         console.log(dataSorted)
     }
 
@@ -102,8 +147,8 @@ const Gallery = (props) => {
     return (
 
         <div>
-            <div id="gallery">
-                <Box sx={{ minWidth: 120, maxWidth: 320 }}>
+            <div style={{ display: "flex", gap: "15px", padding: "5px" }}>
+                <Box sx={{ width: "100%" }}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Filter</InputLabel>
                         <Select
@@ -113,13 +158,24 @@ const Gallery = (props) => {
                             label="filter"
                             onChange={handleFilterChange}
                         >
-                            <MenuItem value={"favoritesFilter"}>Favorites</MenuItem>
                             <MenuItem value={"paidFilter"}>Paid</MenuItem>
                             <MenuItem value={"freeFilter"}>Free</MenuItem>
+                            <MenuItem value={"favoritesFilter"}>Favorites</MenuItem>
+                            <MenuItem value={"shortFilter"}>Short</MenuItem>
+                            <MenuItem value={"longFilter"}>Long</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
-                <Box sx={{ minWidth: 120, maxWidth: 320 }}>
+                <FormControl sx={{ width: '100%' }}>
+                    <InputLabel htmlFor="outlined-adornment">Search: </InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment"
+                        value={search}
+                        onChange={handleSearch}
+                        label="Search"
+                    />
+                </FormControl>
+                <Box sx={{ width: "100%" }}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Sort</InputLabel>
                         <Select
