@@ -6,21 +6,37 @@ import IconButton from '@mui/material/IconButton'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 const VideoCard = (props) => {
 
-    let { id, name, duration, size, price, url, isPurchased, isFree, clickedVideo, isLoaded } = props
+    let { name, duration, size, price, url, isPurchased, isFree, clickedVideo, isLoaded } = props
     const [isFavorite, setIsFavorite] = useState(false)
     const [hasPurchased, setHasPurchased] = useState(isPurchased)
+    const [object, setObject] = useState({
+        name: name,
+        duration: duration,
+        size: size,
+        price: price,
+        url: url,
+        isFree: isFree,
+        isPurchased: isPurchased,
+        clickedVideo: clickedVideo,
+        isLoaded: isLoaded
+    })
 
     const handleFavoriteClick = () => {
-        return setIsFavorite((prevIsFavorite) => { return !prevIsFavorite })
+        // return setIsFavorite((prevIsFavorite) => { return !prevIsFavorite })
+            return setObject((prevObject) => {
+                return ({...object,
+                isFavorite: !object.isFavorite,
+                })})
     }
 
     const handlePurchaseToggle = () => {
         return setHasPurchased((prevHasPurchased) => {
             isPurchased = !prevHasPurchased
+            console.log(isPurchased)
             return !prevHasPurchased
         })
     }
-
+    // console.log(isPurchased)
 
     let blur, display, link
     if (!isFree && !isPurchased) {
@@ -64,7 +80,7 @@ const VideoCard = (props) => {
                             {isFree ?
                                 <Tooltip title="Favorite" placement="top" arrow >
                                     <IconButton color="purple" onClick={handleFavoriteClick}>
-                                        {isFavorite ? <FavoriteIcon style={{ fontSize: "35px", textShadow: "3px 3px 2px black" }} /> : <FavoriteBorderIcon style={{ fontSize: "35px" }} />}
+                                        {object.isFavorite ? <FavoriteIcon style={{ fontSize: "35px", textShadow: "3px 3px 2px black" }} /> : <FavoriteBorderIcon style={{ fontSize: "35px" }} />}
                                     </IconButton>
                                 </Tooltip>
                                 : hasPurchased ?
