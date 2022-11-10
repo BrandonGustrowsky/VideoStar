@@ -70,48 +70,10 @@ const AppContent = () => {
             })()
         }, 2000)
     }, [])
-
-    const videoCards = [] //Stores all VideoCard components that are to be rendered in the Gallery (check
-                            // Gallery props)
     const paidVideoObjs = [] //Stores the Videos that are not free and have not been purchased
     let paidVideos = [] //Stores the VideoCard components that are to be rendered in the Theatre component
                         //as recommended videos (check Theatre props)
 
-    if (data) {
-        for (const videoObj of data) {
-            videoCards.push(
-                <VideoCard
-                    id={videoObj.id}
-                    name={videoObj.name}
-                    duration={videoObj.duration}
-                    size={videoObj.size}
-                    price={videoObj.price}
-                    url={videoObj.url}
-                    isPurchased={videoObj.isPurchased}
-                    isFree={videoObj.isFree}
-                    isLoaded={isLoaded}
-                    clickedVideo={() => {handleShowVideo(videoObj.id, videoObj.name, videoObj.duration, videoObj.size, videoObj.isPurchased, videoObj.isFree, videoObj.url)}}
-                />
-            )
-        }
-        
-    } else {
-        //Create empty VideoCards
-        for (let i=0; i<25; i++) {
-            videoCards.push(
-                <VideoCard
-                    name={""}
-                    duration={""}
-                    size={""}
-                    price={""}
-                    url={""}
-                    isPurchased={""}
-                    isFree={""}
-                    isLoaded={isLoaded}
-                />
-            )
-        }
-    }
     if (data) {
         for (const videoObj of data) {
             if (!videoObj.isFree && !videoObj.isPurchased) {
@@ -167,7 +129,9 @@ const AppContent = () => {
                 }
                 {showGallery &&
                     <Gallery
-                        videos={videoCards}
+                        data={data}
+                        isLoaded={isLoaded}
+                        handleShowVideo={handleShowVideo}
                         />
                 }
                 {console.log(showTheatre.url)}
