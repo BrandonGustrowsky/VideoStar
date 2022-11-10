@@ -62,7 +62,7 @@ const Gallery = (props) => {
             })
         }
 
-        
+
         if (filter == 'paidFilter') {
             dataSorted = dataSorted.filter((a) => {
                 return !a.isFree
@@ -143,7 +143,7 @@ const Gallery = (props) => {
     return (
 
         <div>
-            <div style={{ display: "flex", gap: "15px", padding: "5px" }}>
+            <div style={{ display: "flex", gap: "15px", padding: "10px" }}>
                 <Box sx={{ width: "100%" }}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Filter</InputLabel>
@@ -154,6 +154,7 @@ const Gallery = (props) => {
                             label="filter"
                             onChange={handleFilterChange}
                         >
+                            <MenuItem value={""}>None</MenuItem>
                             <MenuItem value={"paidFilter"}>Paid</MenuItem>
                             <MenuItem value={"freeFilter"}>Free</MenuItem>
                             <MenuItem value={"favoritesFilter"}>Favorites</MenuItem>
