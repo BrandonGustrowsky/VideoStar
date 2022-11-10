@@ -45,7 +45,6 @@ const Gallery = (props) => {
                 return (msA > msB) ? 1 : -1
             })
         } else if (sort == 'titleSort') {
-            console.log(data)
             dataSorted = data.sort((a, b) => {
                 return (a.name > b.name) ? 1 : -1
             })
@@ -54,7 +53,6 @@ const Gallery = (props) => {
                 return (a.name > b.name) ? 1 : -1
             })
         } else if (sort == 'freeSort') {
-            console.log(data)
             dataSorted = data.sort((a, b) => {
                 return (a.price < b.price) ? 1 : -1
             })
@@ -64,7 +62,7 @@ const Gallery = (props) => {
             })
         }
 
-        console.log(filter)
+        
         if (filter == 'paidFilter') {
             dataSorted = dataSorted.filter((a) => {
                 return !a.isFree
@@ -100,8 +98,6 @@ const Gallery = (props) => {
                 return a.name.toLowerCase().includes(search)
             })
         }
-
-        console.log(dataSorted)
     }
 
     const videoCards = [] //Stores all VideoCard components that are to be rendered in the Gallery (check
