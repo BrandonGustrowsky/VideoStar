@@ -125,7 +125,7 @@ const AppContent = () => {
                         showingGallery={() => handleShowGallery(true)}
                 />
                 {showCart &&
-                    <Cart />
+                    <Cart paidVideos={paidVideos}/>
                 }
                 {showGallery &&
                     <Gallery
