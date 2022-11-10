@@ -42,3 +42,8 @@ html, body {
 .videoCard:hover {
     box-shadow: rgba(196, 0, 228, 0.4) 0px 0px 5px 5px, rgba(196, 0, 228, 0.3) 0px 0px 10px 10px, rgba(196, 0, 228, 0.2) 0px 0px 15px 15px, rgba(196, 0, 228, 0.1) 0 0 20px 20px, rgba(196, 0, 228, 0.05) 0 0 45px 45px;
 }
+
+.cartButton{
+    box-shadow: 
+             rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}

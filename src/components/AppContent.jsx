@@ -170,22 +170,31 @@ const AppContent = () => {
                     data={data}
                     isLoaded={isLoaded}
                     handleShowVideo={handleShowVideo}
-                />
-            }
-            {console.log(showTheatre.url)}
-            {(showTheatre.id != null) &&
-                <Theatre id={showTheatre.id}
-                    name={showTheatre.name}
-                    duration={showTheatre.duration}
-                    size={showTheatre.size}
-                    isPurchased={showTheatre.isPurchased}
-                    isFree={showTheatre.isFree}
-                    url={showTheatre.url}
-                    recommendedVideos={paidVideos}
-                />
-            }
-        </div>
-    )
+                />}
+                {showCart &&
+                    <Cart paidVideos={paidVideos}/>
+                }
+                {showGallery &&
+                    <Gallery
+                        data={data}
+                        isLoaded={isLoaded}
+                        handleShowVideo={handleShowVideo}
+                        />
+                }
+                {console.log(showTheatre.url)}
+                {(showTheatre.id != null) &&
+                    <Theatre id={showTheatre.id}
+                            name={showTheatre.name}
+                            duration={showTheatre.duration}
+                            size={showTheatre.size}
+                            isPurchased={showTheatre.isPurchased}
+                            isFree={showTheatre.isFree}
+                            url={showTheatre.url}
+                            recommendedVideos={paidVideos}
+                    />
+                }
+            </div>
+        )
 }
 
 export default AppContent
