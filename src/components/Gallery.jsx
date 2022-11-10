@@ -62,7 +62,7 @@ const Gallery = (props) => {
             })
         }
 
-        
+
         if (filter == 'paidFilter') {
             dataSorted = dataSorted.filter((a) => {
                 return !a.isFree
@@ -154,6 +154,7 @@ const Gallery = (props) => {
                             label="filter"
                             onChange={handleFilterChange}
                         >
+                            <MenuItem value={""}>None</MenuItem>
                             <MenuItem value={"paidFilter"}>Paid</MenuItem>
                             <MenuItem value={"freeFilter"}>Free</MenuItem>
                             <MenuItem value={"favoritesFilter"}>Favorites</MenuItem>
