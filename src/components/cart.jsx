@@ -15,13 +15,13 @@ const Cart = (props) => {
                 <h1 id="pageTitle" style={{color: "#F1DDBF", textAlign: "center", fontSize: "50px", paddingBottom: "30px"}} >Your Cart <ShoppingCartIcon style={{fontSize: "50px"}}></ShoppingCartIcon></h1>
             </div>
             <div style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
-                <div style={{display: 'flex', gap:"100px", marginLeft: "100px", marginRight: "50px", flexWrap: "wrap"}} >
+                <div style={{display: 'flex', gap:"150px", marginLeft: "250px", marginRight: "50px", flexWrap: "wrap", width: "50%"}} >
                     {paidVideos}
                 </div>
-                <div id='cartinfo' style={{marginRight: "100px"}}>
-                    <button style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginTop: "50px"}}>Delete All</button>
+                <div id='cartinfo' style={{marginRight: "200px"}}>
+                    <button class="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginTop: "50px"}}>Delete All</button>
                     <h2 style={{color: "#F1DDBF", marginTop: "300px"}}>Total: $ </h2>
-                    <button style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", }}>Purchase</button>
+                    <button class="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginBottom: "150px" }}>Purchase</button>
                 </div>
             </div>
         </main>
