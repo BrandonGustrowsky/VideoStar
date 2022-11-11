@@ -30,7 +30,7 @@ const Gallery = (props) => {
         debouncedFetch()
     }, [search]) */
 
-    if (data.length > 0) {
+    /* if (data.length > 0) {
         if (sort == 'lengthSort') {
             dataSorted = data.sort((a, b) => {
                 let splitA = a.duration.split(":")
@@ -61,7 +61,6 @@ const Gallery = (props) => {
                 return (a.price > b.price) ? 1 : -1
             })
         }
-
 
         if (filter == 'paidFilter') {
             dataSorted = dataSorted.filter((a) => {
@@ -98,13 +97,64 @@ const Gallery = (props) => {
                 return a.name.toLowerCase().includes(search)
             })
         }
-    }
+    } */
 
     const videoCards = [] //Stores all VideoCard components that are to be rendered in the Gallery (check
     // Gallery props)
 
     if (data.length > 0) {
-        for (const videoObj of data) {
+        for (const videoObj of data.sort((a, b) => {
+            if (sort == 'lengthSort') {
+                let splitA = a.duration.split(":")
+                splitA[2] = splitA[2].split(".")
+                let splitB = b.duration.split(":")
+                splitB[2] = splitB[2].split(".")
+
+                // This converts the time to milliseconds assuming the number after the dot is a perecentage of milliseconds.
+                let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
+                let msB = (splitB[2][1] * 10) + (splitB[2][0] * 1000) + (splitB[1] * 60000) + (splitB[0] * 3600000)
+
+                return (msA > msB) ? 1 : -1
+            } else if (sort == 'titleSort') {
+                return (a.name > b.name) ? 1 : -1
+            } else if (sort == 'titleSort') {
+                return (a.name > b.name) ? 1 : -1
+            } else if (sort == 'freeSort') {
+                return (a.price < b.price) ? 1 : -1
+            } else if (sort == 'paidSort') {
+                return (a.price > b.price) ? 1 : -1
+            } else {
+                return (a.name > b.name) ? 1 : -1
+            }
+        }).filter((a) => {
+            if (filter == 'paidFilter') {
+                    return !a.isFree
+            } else if (filter == 'freeFilter') {
+                    return a.isFree
+            } else if (filter == 'favoritesFilter') {
+                    return a.isFavorite
+            } else if (filter == 'shortFilter') {
+                    let splitA = a.duration.split(":")
+                    splitA[2] = splitA[2].split(".")
+    
+                    let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
+                    return msA < 15000
+            } else if (filter == 'longFilter') {
+                    let splitA = a.duration.split(":")
+                    splitA[2] = splitA[2].split(".")
+    
+                    let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
+                    return msA >= 15000
+            } else {
+                return a
+            }
+        }).filter((a) => {
+            if (search != '') {
+                    return a.name.toLowerCase().includes(search)
+            } else {
+                return a
+            }
+        })) {
             videoCards.push(
                 <VideoCard
                     data={data}
