@@ -39,8 +39,8 @@ const Cart = (props) => {
 
     return (
         <main id='root'  style={{background: "#525E75", height: "100%"}}>
-            <div style={{background: "#525E75"}}>
-                <h1 id="pageTitle" style={{color: "#F1DDBF", textAlign: "center", fontSize: "50px", paddingBottom: "30px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}} >Your Cart <ShoppingCartIcon style={{fontSize: "50px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}}></ShoppingCartIcon></h1>
+            <div style={{position: "relative", background: "#525E75"}}>
+                <Typography id="pageTitle" style={{color: "#F1DDBF", textAlign: "center", fontSize: "50px", paddingBottom: "30px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}} >Your Cart <ShoppingCartIcon style={{ marginLeft: "15px", position: "absolute", top: "10%", fontSize: "60px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}}></ShoppingCartIcon></Typography>
             </div>
             <div className='cart'>
                 <div className="cartChild">
@@ -48,14 +48,14 @@ const Cart = (props) => {
                     videos :
                     <Typography variant="p" style={{fontSize: "25px", textAlign: "center"}}>There are no videos in your cart.</Typography>}
                 </div>
-                <div>
+                <div style={{height: "100%", marginTop:"100%"}}>
                     <button className="cartBtns" style={{marginTop: "50px"}} onClick={() => {setData(handleDeleteAll)}}>Remove All</button>
-                    <h2 style={{color: "#F1DDBF", marginTop: "100px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}}>Total: ${data.reduce((accumulator, video) => {
+                    <Typography variant="h2" style={{color: "#F1DDBF", marginTop: "100px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)", fontSize: "25px"}}>Total: $<Typography variant="h2" style={{display: "inline", fontWeight: "400", fontSize: "25px"}}>{data.reduce((accumulator, video) => {
                                                                                                                                                     if (video.isInCart){
                                                                                                                                                         accumulator += video.price
                                                                                                                                                     }
                                                                                                                                                     return accumulator
-                                                                                                                                                }, 0).toFixed(2)} </h2>
+                                                                                                                                                }, 0).toFixed(2)} </Typography></Typography>
                     <button className="cartBtns" style={{marginBottom: "150px"}} onClick={() => {setData(handlePurchaseVideos)}}>Purchase</button>
                 </div>
             </div>
