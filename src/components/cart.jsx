@@ -5,9 +5,20 @@ import { useState, useEffect } from "react";
 import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
 
 const Cart = (props) => {
-    const { showingCart, videos } = props
+    const { showingCart, data, videos, setData } = props
 
+<<<<<<< HEAD
     const [] = useState(null)
+=======
+    const handleDeleteAll = () => {
+        return data.map((video) => {
+            if (video.isInCart) {
+                video.isInCart = false
+            }
+            return video
+        })
+    }
+>>>>>>> c246503ad35b7c36c4d0eebf11eb3b7071f4015c
 
     return (
         <main id='root' style={{background: "#525E75", height: "100%"}}>
@@ -19,9 +30,13 @@ const Cart = (props) => {
                     {videos}
                 </div>
                 <div id='cartinfo' style={{marginRight: "200px"}}>
-                    <button class="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginTop: "50px"}}>Remove All</button>
+                    <button className="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginTop: "50px"}} onClick={() => {setData(handleDeleteAll)}}>Remove All</button>
                     <h2 style={{color: "#F1DDBF", marginTop: "300px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}}>Total: $ </h2>
+<<<<<<< HEAD
                     <button class="cartButton"  style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginBottom: "150px" }}>Purchase</button>
+=======
+                    <button className="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginBottom: "150px" }}>Purchase</button>
+>>>>>>> c246503ad35b7c36c4d0eebf11eb3b7071f4015c
                 </div>
             </div>
         </main>
