@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Shuffle } from "@mui/icons-material"
 import { Typography } from "@mui/material"
 import Box from '@mui/material/Box'
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 const Theatre = (props) => {
     const { video, recommendedVideos } = props
@@ -22,7 +23,7 @@ const Theatre = (props) => {
                 <Typography variant="h3" color="secondary" style={{fontSize: "35px", fontWeight: "300"}}> { video.size + " MB"} </Typography>
             </section>
             <section id="recommended">
-                { recommendedVideos }
+                { (recommendedVideos.length > 0) ? recommendedVideos : <Typography variant="p" color="green" style={{fontSize: "35px", fontWeight:"bold"}}>There are no more videos to recommend. <SentimentDissatisfiedIcon /></Typography>}
             </section>
         </main>
     )

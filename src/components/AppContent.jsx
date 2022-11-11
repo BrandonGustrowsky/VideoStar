@@ -47,7 +47,7 @@ const AppContent = () => {
                     })[0]}
                     recommendedVideos={data.filter((video) => {
                         return (!video.isFree || !video.isPurchased)
-                    }).sort(() => Math.random() - 0.5).slice(-3).map((video) => {
+                    }).sort(() => Math.random() - 0.5).filter((video) => {return !video.isInCart && !video.isPurchased}).slice(-3).map((video) => {
                         return <VideoCard
                     data={data}
                     setData={setData}
