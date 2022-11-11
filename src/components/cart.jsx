@@ -7,7 +7,7 @@ import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
 const Cart = (props) => {
     const { showingCart, videos } = props
 
-    //const [] = useState(null)
+    const [] = useState(null)
 
     return (
         <main id='root' style={{background: "#525E75", height: "100%"}}>
@@ -21,7 +21,7 @@ const Cart = (props) => {
                 <div id='cartinfo' style={{marginRight: "200px"}}>
                     <button class="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginTop: "50px"}}>Remove All</button>
                     <h2 style={{color: "#F1DDBF", marginTop: "300px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}}>Total: $ </h2>
-                    <button class="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginBottom: "150px" }}>Purchase</button>
+                    <button class="cartButton"  style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginBottom: "150px" }}>Purchase</button>
                 </div>
             </div>
         </main>
