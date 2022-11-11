@@ -35,14 +35,6 @@ const VideoCard = (props) => {
         })
     }
 
-    // const handlePurchaseToggle = () => {
-    //     return setHasPurchased((prevHasPurchased) => {
-    //         isPurchased = !prevHasPurchased
-    //         console.log(isPurchased)
-    //         return !prevHasPurchased
-    //     })
-    // }
-
     let blur, display, link
     if (!isFree && !isPurchased) {
         blur = "blur(5.5px)"
@@ -82,7 +74,7 @@ const VideoCard = (props) => {
                             </Typography>
                             {/* This should toggle between the favorite button and the add to cart button
                                 depending if the video is free or not. */}
-                            {isFree ?
+                            {isFree || isPurchased ?
                                 <Tooltip title="Favorite" placement="top" arrow >
                                     <IconButton color="purple" onClick={ () => {setData(handleFavoriteClick)}}>
                                         {isFavorite ? <FavoriteIcon style={{ fontSize: "35px", textShadow: "3px 3px 2px black" }} /> : <FavoriteBorderIcon style={{ fontSize: "35px" }} />}
