@@ -50,6 +50,7 @@ const AppContent = () => {
                     size={video.size}
                     price={video.price}
                     url={video.url}
+                    isInCart={video.isInCart}
                     isPurchased={video.isPurchased}
                     isFree={video.isFree}
                     isLoading={isLoading}
