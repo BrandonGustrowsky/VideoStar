@@ -16,6 +16,16 @@ const Cart = (props) => {
         })
     }
 
+    const handlePurchaseVideos = () => {
+        return data.map((video) => {
+            if (video.isInCart) {
+                video.isPurchased = true
+                video.isInCart = false
+            }
+            return video
+        })
+    }
+
     return (
         <main id='root' style={{background: "#525E75", height: "100%"}}>
             <div id="Cart" style={{background: "#525E75"}}>
@@ -28,7 +38,7 @@ const Cart = (props) => {
                 <div id='cartinfo' style={{marginRight: "200px"}}>
                     <button className="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginTop: "50px"}} onClick={() => {setData(handleDeleteAll)}}>Remove All</button>
                     <h2 style={{color: "#F1DDBF", marginTop: "300px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}}>Total: $ </h2>
-                    <button className="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginBottom: "150px" }}>Purchase</button>
+                    <button className="cartButton" style={{background: "#525E75", color: "#F1DDBF", fontSize: "15px", height: "45px", width: "100px", marginBottom: "150px"}} onClick={() => {setData(handlePurchaseVideos)}}>Purchase</button>
                 </div>
             </div>
         </main>
