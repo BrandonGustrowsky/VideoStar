@@ -72,3 +72,21 @@ body {
         justify-content: center;
     }
 }
+
+/*cart styles*/
+.cart{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    }
+
+
+@media screen and (max-width: 500px){
+    .cart{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
