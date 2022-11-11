@@ -14,11 +14,10 @@ const Gallery = (props) => {
     const [filter, setFilter] = useState('')
     const [search, setSearch] = useState('')
 
+    // These handle functions are all onChange. So whenever the form is changed the state is updated with the form's values.
     const handleSearch = (event) => {
         setSearch(event.target.value)
     }
-    let dataSorted
-
     const handleSortChange = (event) => {
         setSort(event.target.value)
     }
@@ -103,8 +102,10 @@ const Gallery = (props) => {
     // Gallery props)
 
     if (data.length > 0) {
+        // This for loop runs through every single video in data and sorts it according to the state. It then filters it according to the state.
         for (const videoObj of data.sort((a, b) => {
             if (sort == 'lengthSort') {
+                // this splits the data into numbers instead of the format "00:00:00.00"
                 let splitA = a.duration.split(":")
                 splitA[2] = splitA[2].split(".")
                 let splitB = b.duration.split(":")
@@ -128,29 +129,33 @@ const Gallery = (props) => {
             }
         }).filter((a) => {
             if (filter == 'paidFilter') {
-                    return !a.isFree
+                return !a.isFree
             } else if (filter == 'freeFilter') {
-                    return a.isFree
+                return a.isFree
             } else if (filter == 'favoritesFilter') {
-                    return a.isFavorite
+                return a.isFavorite
             } else if (filter == 'shortFilter') {
-                    let splitA = a.duration.split(":")
-                    splitA[2] = splitA[2].split(".")
-    
-                    let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
-                    return msA < 15000
+                // this splits the data into numbers instead of the format "00:00:00.00"
+                let splitA = a.duration.split(":")
+                splitA[2] = splitA[2].split(".")
+
+                // This converts the time to milliseconds assuming the number after the dot is a perecentage of milliseconds.
+                let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
+                return msA < 15000
             } else if (filter == 'longFilter') {
-                    let splitA = a.duration.split(":")
-                    splitA[2] = splitA[2].split(".")
-    
-                    let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
-                    return msA >= 15000
+                // this splits the data into numbers instead of the format "00:00:00.00"
+                let splitA = a.duration.split(":")
+                splitA[2] = splitA[2].split(".")
+
+                // This converts the time to milliseconds assuming the number after the dot is a perecentage of milliseconds.
+                let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
+                return msA >= 15000
             } else {
                 return a
             }
         }).filter((a) => {
             if (search != '') {
-                    return a.name.toLowerCase().includes(search)
+                return a.name.toLowerCase().includes(search)
             } else {
                 return a
             }
