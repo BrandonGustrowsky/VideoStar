@@ -2,6 +2,7 @@ import VideoCard from './VideoCard'
 import NavBar from './NavBar'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useState, useEffect } from "react";
+import { Typography } from "@mui/material"
 import { SettingsInputAntennaTwoTone } from '@mui/icons-material';
 
 const Cart = (props) => {
@@ -27,6 +28,8 @@ const Cart = (props) => {
         })
     }
 
+    console.log(videos)
+
         console.log(data.reduce((accumulator, video) => {
             if (video.isInCart){
                 accumulator += video.price
@@ -41,7 +44,9 @@ const Cart = (props) => {
             </div>
             <div className='cart'>
                 <div className="cartChild">
-                    {videos}
+                    {(videos.length > 0) ?
+                    videos :
+                    <Typography variant="p" style={{fontSize: "25px", textAlign: "center"}}>There are no videos in your cart.</Typography>}
                 </div>
                 <div>
                     <button className="cartBtns" style={{marginTop: "50px"}} onClick={() => {setData(handleDeleteAll)}}>Remove All</button>
