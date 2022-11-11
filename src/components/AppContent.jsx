@@ -39,7 +39,23 @@ const AppContent = () => {
                 changeState={setData}
                 showCart={setIsShowingCart}/>
             {isShowingCart ? 
-            <Cart /> :
+            <Cart
+                videos={data.filter((video) => {return video.isInCart}).map((video) => {return <VideoCard
+                    data={data}
+                    setData={setData}
+                    key={video.id}
+                    id={video.id}
+                    name={video.name}
+                    duration={video.duration}
+                    size={video.size}
+                    price={video.price}
+                    url={video.url}
+                    isPurchased={video.isPurchased}
+                    isFree={video.isFree}
+                    isLoading={isLoading}
+                    handleShowVideo={setData}
+                    />})}
+                 /> :
             data.filter((video) => {return video.isInTheatreMode}).length == 1 ? 
                 <Theatre
                     video={data.filter((video) => {
