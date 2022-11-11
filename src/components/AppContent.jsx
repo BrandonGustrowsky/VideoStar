@@ -56,6 +56,8 @@ const AppContent = () => {
                     isLoading={isLoading}
                     handleShowVideo={setData}
                     />})}
+                setData={setData}
+                data={data}
                  /> :
             data.filter((video) => {return video.isInTheatreMode}).length == 1 ? 
                 <Theatre
