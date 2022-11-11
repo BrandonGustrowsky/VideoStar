@@ -33,7 +33,7 @@ const Cart = (props) => {
 
 
     return (
-        <main  style={{background: "#525E75", height: "100%"}}>
+        <main  style={{background: "#525E75", minHeight: "calc(100vh - 175px)"}}>
             <div style={{position: "relative", background: "#525E75"}}>
                 <Typography id="pageTitle" style={{color: "#F1DDBF", textAlign: "center", fontSize: "50px", paddingBottom: "30px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}} >Your Cart <ShoppingCartIcon style={{ marginLeft: "15px", position: "absolute", top: "10%", fontSize: "60px", textShadow: "4px 4px 2px rgba(0,0,0,0.6)"}}></ShoppingCartIcon></Typography>
             </div>
