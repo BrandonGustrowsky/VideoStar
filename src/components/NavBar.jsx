@@ -19,6 +19,17 @@ const Navbar = (props) => {
         })
     }
 
+    console.log(data.reduce((accumulator, video) => {
+        accumulator += video.price
+        return accumulator
+    }, 0))
+
+    console.log(data.reduce((accumulator, video) => {
+        if (video.isInCart) {
+            return accumulator += 1
+        }
+    }, 0))
+
     return (
         <header style={{"background": "#525E75", width: "100%", flexGrow: 1, marginBottom: "10px"}}> 
             <Box style={{boxShadow: "0px 5px 20px 3px rgba(20,20,20,0.6)",}}>
@@ -28,7 +39,12 @@ const Navbar = (props) => {
                     </Button>
                     <Button variant="text" 
                             style={{fontSize: "20px", color: "#92BA92", background: "none", boxShadow: "none", textShadow: "0px 0px 15px #000000"}}
-                            onClick={ () => {showCart(true)} }>Cart (0)</Button>
+                            onClick={ () => {showCart(true)} }>Cart (<Typography>{data.reduce((accumulator, video) => {
+                                if (video.isInCart) {
+                                    accumulator += 1
+                                }
+                                return accumulator
+                            }, 0)}</Typography>)</Button>
                 </Toolbar>
             </Box>
         </header>
