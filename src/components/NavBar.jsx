@@ -19,16 +19,6 @@ const Navbar = (props) => {
         })
     }
 
-    console.log(data.reduce((accumulator, video) => {
-        accumulator += video.price
-        return accumulator
-    }, 0))
-
-    console.log(data.reduce((accumulator, video) => {
-        if (video.isInCart) {
-            return accumulator += 1
-        }
-    }, 0))
 
     return (
         <header style={{"background": "#525E75", width: "100%", flexGrow: 1, marginBottom: "10px"}}> 
