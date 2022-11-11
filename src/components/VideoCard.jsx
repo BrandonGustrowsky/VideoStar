@@ -6,25 +6,42 @@ import IconButton from '@mui/material/IconButton'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 const VideoCard = (props) => {
 
-    let { name, duration, size, price, url, isPurchased, isFree, isFavorite, isInCart, favoriteFtn, clickedVideo, isLoaded } = props
+    const { data, id, name, duration, size, price, url, isPurchased, isFree, isFavorite, isInCart, setData, isLoading } = props
 
-    const [favorite, setFavorite] = useState(isFavorite)
+    const handleVideoClicked = () => {
+        return data.map((video) => {
+                if (video.id === id) {
+                    video.isInTheatreMode = true
+                }
+                return video
+            })
+    }
 
     const handleFavoriteClick = () => {
-        // return setIsFavorite((prevIsFavorite) => { return !prevIsFavorite })
-            return setFavorite((prevFavorite) => {
-                isFavorite = !prevFavorite
-                return !prevFavorite })
-    }
-
-    const handlePurchaseToggle = () => {
-        return setHasPurchased((prevHasPurchased) => {
-            isPurchased = !prevHasPurchased
-            console.log(isPurchased)
-            return !prevHasPurchased
+        return data.map((video) => {
+            if (video.id === id) {
+                video.isFavorite = !isFavorite
+            }
+            return video
         })
     }
-    // console.log(isPurchased)
+
+    const handleAddToCart = () => {
+        return data.map((video) => {
+            if (video.id === id) {
+                video.isInCart = !isInCart
+            }
+            return video
+        })
+    }
+
+    // const handlePurchaseToggle = () => {
+    //     return setHasPurchased((prevHasPurchased) => {
+    //         isPurchased = !prevHasPurchased
+    //         console.log(isPurchased)
+    //         return !prevHasPurchased
+    //     })
+    // }
 
     let blur, display, link
     if (!isFree && !isPurchased) {
@@ -38,9 +55,9 @@ const VideoCard = (props) => {
     return (
         <div>
             <Card className="videoCard" sx={{ width: "345px", height: "300px", boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px" }}>
-                <div style={{ display: isLoaded ? "block" : "none" }}>
+                <div style={{ display: !isLoading ? "block" : "none" }}>
                     <div style={{ position: "relative", textAlign: "center", color: "#DAA520" }}>
-                        <video className="videoCardVideo" width="auto" height="195px" src={url} crossOrigin="true" onClick={(isFree || isPurchased) ? clickedVideo : () => { return }} style={{ filter: blur }} >
+                        <video className="videoCardVideo" width="auto" height="195px" src={url} crossOrigin="true" onClick={(isFree || isPurchased) ? () => { setData(handleVideoClicked) } : () => {}} style={{ filter: blur }} >
                             <source src={url} type="video/mp4" alt="Here!" />
                         </video>
                         <Typography variant="p" style={{ display: display, position: "absolute", top: "4%", left: "42%", fontSize: "150px", zIndex: 5, textShadow: "4px 3px 0px #000, 9px 8px 0px rgba(0,0,0,1)   " }}>$</Typography>
@@ -67,14 +84,14 @@ const VideoCard = (props) => {
                                 depending if the video is free or not. */}
                             {isFree ?
                                 <Tooltip title="Favorite" placement="top" arrow >
-                                    <IconButton color="purple" onClick={favoriteFtn}>
+                                    <IconButton color="purple" onClick={ () => {setData(handleFavoriteClick)}}>
                                         {isFavorite ? <FavoriteIcon style={{ fontSize: "35px", textShadow: "3px 3px 2px black" }} /> : <FavoriteBorderIcon style={{ fontSize: "35px" }} />}
                                     </IconButton>
                                 </Tooltip>
-                                : isPurchased ?
-                                    <Button color="purple" onClick={handlePurchaseToggle} variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "12px", padding: "1px" }}>Remove</Button>
+                                : isInCart ?
+                                    <Button color="purple" onClick={ () => { setData(handleAddToCart)} } variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "12px", padding: "1px" }}>Remove</Button>
                                     :
-                                    <Button color="purple" onClick={handlePurchaseToggle} variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "9px", padding: "1px" }}>Add to Cart</Button>
+                                    <Button color="purple" onClick={ ()=> { setData(handleAddToCart)} } variant="outlined" style={{ marginLeft: "-20px", marginTop: "7px", width: "auto", height: "30px", fontSize: "9px", padding: "1px" }}>Add to Cart</Button>
                             }
                         </div>
                     </CardContent>

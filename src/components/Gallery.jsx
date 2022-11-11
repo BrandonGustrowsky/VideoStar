@@ -9,7 +9,7 @@ import Select from '@mui/material/Select'
 import OutlinedInput from '@mui/material/OutlinedInput'
 
 const Gallery = (props) => {
-    const { data, isLoaded, handleShowVideo } = props
+    const { data, isLoading, setData } = props
     const [sort, setSort] = useState('titleSort')
     const [filter, setFilter] = useState('')
     const [search, setSearch] = useState('')
@@ -30,7 +30,7 @@ const Gallery = (props) => {
         debouncedFetch()
     }, [search]) */
 
-    if (data) {
+    if (data.length > 0) {
         if (sort == 'lengthSort') {
             dataSorted = data.sort((a, b) => {
                 let splitA = a.duration.split(":")
@@ -103,10 +103,12 @@ const Gallery = (props) => {
     const videoCards = [] //Stores all VideoCard components that are to be rendered in the Gallery (check
     // Gallery props)
 
-    if (data) {
-        for (const videoObj of dataSorted) {
+    if (data.length > 0) {
+        for (const videoObj of data) {
             videoCards.push(
                 <VideoCard
+                    data={data}
+                    setData={setData}
                     key={videoObj.id}
                     id={videoObj.id}
                     name={videoObj.name}
@@ -116,8 +118,11 @@ const Gallery = (props) => {
                     url={videoObj.url}
                     isPurchased={videoObj.isPurchased}
                     isFree={videoObj.isFree}
-                    isLoaded={isLoaded}
-                    clickedVideo={() => { handleShowVideo(videoObj.id, videoObj.name, videoObj.duration, videoObj.size, videoObj.isPurchased, videoObj.isFree, videoObj.url) }}
+                    isFavorite={videoObj.isFavorite}
+                    isInCart={videoObj.isInCart}
+                    isLoading={isLoading}
+                    // clickedVideo={() => { handleShowVideo(videoObj.id, videoObj.name, videoObj.duration, videoObj.size, videoObj.isPurchased, videoObj.isFree, videoObj.url) }}
+                    clickedVideo={() => { }}
                 />
             )
         }
@@ -134,7 +139,7 @@ const Gallery = (props) => {
                     url={""}
                     isPurchased={""}
                     isFree={""}
-                    isLoaded={isLoaded}
+                    isLoading={isLoading}
                 />
             )
         }
@@ -195,7 +200,6 @@ const Gallery = (props) => {
             </div>
         </div>
     )
-
 }
 
 export default Gallery

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Theatre from './components/Theatre'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ThemeContext } from 'styled-components'
+// import AppContentRefactor from './components/AppContentRefactor'
 
 function App() {
   const [count, setCount] = useState(0)
