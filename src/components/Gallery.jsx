@@ -1,5 +1,4 @@
-import { sizeWidth } from "@mui/system"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import VideoCard from './VideoCard'
 import Box from '@mui/material/Box'
 import InputLabel from '@mui/material/InputLabel'
@@ -24,79 +23,6 @@ const Gallery = (props) => {
     const handleFilterChange = (event) => {
         setFilter(event.target.value)
     }
-
-    /* useEffect(() => {
-        debouncedFetch()
-    }, [search]) */
-
-    /* if (data.length > 0) {
-        if (sort == 'lengthSort') {
-            dataSorted = data.sort((a, b) => {
-                let splitA = a.duration.split(":")
-                splitA[2] = splitA[2].split(".")
-                let splitB = b.duration.split(":")
-                splitB[2] = splitB[2].split(".")
-
-                // This converts the time to milliseconds assuming the number after the dot is a perecentage of milliseconds.
-                let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
-                let msB = (splitB[2][1] * 10) + (splitB[2][0] * 1000) + (splitB[1] * 60000) + (splitB[0] * 3600000)
-
-                return (msA > msB) ? 1 : -1
-            })
-        } else if (sort == 'titleSort') {
-            dataSorted = data.sort((a, b) => {
-                return (a.name > b.name) ? 1 : -1
-            })
-        } else if (sort == 'titleSort') {
-            dataSorted = data.sort((a, b) => {
-                return (a.name > b.name) ? 1 : -1
-            })
-        } else if (sort == 'freeSort') {
-            dataSorted = data.sort((a, b) => {
-                return (a.price < b.price) ? 1 : -1
-            })
-        } else if (sort == 'paidSort') {
-            dataSorted = data.sort((a, b) => {
-                return (a.price > b.price) ? 1 : -1
-            })
-        }
-
-        if (filter == 'paidFilter') {
-            dataSorted = dataSorted.filter((a) => {
-                return !a.isFree
-            })
-        } else if (filter == 'freeFilter') {
-            dataSorted = dataSorted.filter((a) => {
-                return a.isFree
-            })
-        } else if (filter == 'favoritesFilter') {
-            dataSorted = dataSorted.filter((a) => {
-                return a.isFavorite
-            })
-        } else if (filter == 'shortFilter') {
-            dataSorted = dataSorted.filter((a) => {
-                let splitA = a.duration.split(":")
-                splitA[2] = splitA[2].split(".")
-
-                let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
-                return msA < 15000
-            })
-        } else if (filter == 'longFilter') {
-            dataSorted = dataSorted.filter((a) => {
-                let splitA = a.duration.split(":")
-                splitA[2] = splitA[2].split(".")
-
-                let msA = (splitA[2][1] * 10) + (splitA[2][0] * 1000) + (splitA[1] * 60000) + (splitA[0] * 3600000)
-                return msA >= 15000
-            })
-        }
-
-        if (search != '') {
-            dataSorted = dataSorted.filter((a) => {
-                return a.name.toLowerCase().includes(search)
-            })
-        }
-    } */
 
     const videoCards = [] //Stores all VideoCard components that are to be rendered in the Gallery (check
     // Gallery props)
@@ -155,7 +81,7 @@ const Gallery = (props) => {
             }
         }).filter((a) => {
             if (search != '') {
-                return a.name.toLowerCase().includes(search)
+                return ((a.name.toLowerCase().includes(search.toLowerCase())))
             } else {
                 return a
             }
@@ -176,8 +102,6 @@ const Gallery = (props) => {
                     isFavorite={videoObj.isFavorite}
                     isInCart={videoObj.isInCart}
                     isLoading={isLoading}
-                    // clickedVideo={() => { handleShowVideo(videoObj.id, videoObj.name, videoObj.duration, videoObj.size, videoObj.isPurchased, videoObj.isFree, videoObj.url) }}
-                    clickedVideo={() => { }}
                 />
             )
         }

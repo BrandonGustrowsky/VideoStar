@@ -1,10 +1,7 @@
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
-import { useState, useEffect } from 'react'
 
 const Navbar = (props) => {
     const { data, changeState, showCart } = props
@@ -18,7 +15,6 @@ const Navbar = (props) => {
             return video
         })
     }
-
 
     return (
         <header style={{"background": "#525E75", width: "100%", flexGrow: 1, marginBottom: "10px"}}> 
@@ -34,7 +30,8 @@ const Navbar = (props) => {
                                     accumulator += 1
                                 }
                                 return accumulator
-                            }, 0)}</Typography>)</Button>
+                            }, 0)}</Typography>)
+                    </Button>
                 </Toolbar>
             </Box>
         </header>
