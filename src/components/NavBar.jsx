@@ -1,4 +1,4 @@
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -18,7 +18,7 @@ const Navbar = (props) => {
 
     return (
         <header style={{"background": "#525E75", width: "100%", flexGrow: 1, marginBottom: "10px"}}> 
-            <Box style={{boxShadow: "0px 5px 20px 3px rgba(20,20,20,0.6)",}}>
+            <section style={{boxShadow: "0px 5px 20px 3px rgba(20,20,20,0.6)",}}>
                 <Toolbar id="toolbar">
                     <Button variant="text" id="navbarTitle" onClick={ () => {changeState(handleShowGallery)}} > 
                         VideoStar
@@ -33,7 +33,7 @@ const Navbar = (props) => {
                             }, 0)}</Typography>)
                     </Button>
                 </Toolbar>
-            </Box>
+            </section>
         </header>
     )
 }

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import VideoCard from './VideoCard'
-import Box from '@mui/material/Box'
+// import Box from '@mui/material/Box'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -128,7 +128,7 @@ const Gallery = (props) => {
 
         <div>
             <div id="filterSortForm">
-                <Box sx={{ width: "100%" }}>
+                <section sx={{ width: "100%" }}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Filter</InputLabel>
                         <Select
@@ -146,7 +146,7 @@ const Gallery = (props) => {
                             <MenuItem value={"longFilter"}>Long</MenuItem>
                         </Select>
                     </FormControl>
-                </Box>
+                </section>
                 <FormControl sx={{ width: '100%' }}>
                     <InputLabel htmlFor="outlined-adornment">Search: </InputLabel>
                     <OutlinedInput
@@ -156,7 +156,7 @@ const Gallery = (props) => {
                         label="Search"
                     />
                 </FormControl>
-                <Box sx={{ width: "100%" }}>
+                <section sx={{ width: "100%" }}>
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">Sort</InputLabel>
                         <Select
@@ -172,7 +172,7 @@ const Gallery = (props) => {
                             <MenuItem value={"freeSort"}>Most Expensive to Cheapest</MenuItem>
                         </Select>
                     </FormControl>
-                </Box>
+                </section>
             </div>
             <div id="gallery">
                 {videoCards}
